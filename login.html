@@ -90,7 +90,7 @@
         const nic = nicInput.value;
 
         // Query the Patient collection by NIC
-        const query = db.collection("patients").where("NIC", "==", nic);
+        const query = db.collection("patients").where("nic", "==", nic);
 
         // Get the query results
         query
@@ -105,6 +105,7 @@
           })
           .catch((error) => {
             console.error("Error querying the Patient collection:", error);
+            alert('Please login first!')
           });
       });
     </script>

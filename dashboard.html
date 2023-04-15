@@ -7,7 +7,7 @@
 
     <!-- Site favicon -->
 
-    <link rel="icon" type="image/x-icon" href="/vendors/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
     <!-- Mobile Specific Metas -->
     <meta
@@ -35,6 +35,11 @@
     crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
   </head>
   <body style="background-color: #e6fffb">
     <div class="header">
@@ -121,7 +126,7 @@
               <a class="dropdown-item" href="#"
                 ><i class="dw dw-help"></i> Help</a
               >
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" id="logout"
                 ><i class="dw dw-logout"></i> Log Out</a
               >
             </div>
@@ -513,8 +518,9 @@
                 <div style="line-height: 1">
                   <p
                     style="font-size: 68px; margin-bottom: 0; font-weight: bold"
+                    id="name"
                   >
-                    Nadia Fernando
+                    <span id="patient-name"></span>
                   </p>
                   <p style="margin-bottom: 0">35 years old</p>
                 </div>
@@ -545,23 +551,23 @@
                     "
                   >
                     <div>
-                      <li style="margin-bottom: 3px">Name: Nadia Fernando</li>
-                      <li style="margin-bottom: 3px">NIC Number: 961232450V</li>
-                      <li style="margin-bottom: 3px">Gender: Female</li>
+                      <li style="margin-bottom: 3px">Name: <span id="patient-name"></span></li>
+                      <li style="margin-bottom: 3px">NIC Number: <span id="patient-nic"></span></li>
+                      <li style="margin-bottom: 3px">Gender: <span id="patient-gender"></span></li>
                       <li style="margin-bottom: 3px">
-                        Address: Colombo, Sri Lanka
+                        Address: <span id="patient-address"></span>
                       </li>
                     </div>
                     <div>
                       <li style="margin-bottom: 3px">
-                        Email: nadiafernando99@gmail.com
+                        Email: <span id="patient-email"></span>
                       </li>
                       <li style="margin-bottom: 3px">
-                        Contact Number: 070-3323412
+                        Contact Number: <span id="patient-number"></span>
                       </li>
-                      <li style="margin-bottom: 3px">Occupation: House Wife</li>
+                      <li style="margin-bottom: 3px">Occupation: <span id="patient-occupation"></span></li>
                       <li style="margin-bottom: 3px">
-                        Emergency Contact: 076-2364355
+                        Emergency Contact: <span id="patient-emergency-contact"></span>
                       </li>
                     </div>
                   </ul>
@@ -576,10 +582,10 @@
             >
               <h5 style="color: #fff; margin-bottom: 20px">Health Details</h5>
 
-              <p style="color: #fff">Height: 184 cm</p>
-              <p style="color: #fff">Weight: 63 kg</p>
-              <p style="color: #fff">Blood Type: A+</p>
-              <p style="color: #fff">Last Recorded BP: 110/70 mmHg</p>
+              <p style="color: #fff">Height: <span id="patient-height"></span></p>
+              <p style="color: #fff">Weight: <span id="patient-weight"></span></p>
+              <p style="color: #fff">Blood Type: <span id="patient-blood-type"></span></p>
+              <p style="color: #fff">Last Recorded BP: <span id="patient-last-bp"></p>
             </div>
             <div
               class="card-box min-height-200px pd-20"
@@ -673,15 +679,55 @@
     <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
     <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
     <script src="vendors/scripts/dashboard3.js"></script>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyD861ysCRXLpDd_5054qUocn_cleYnRzIg",
+        authDomain: "medcare-rats.firebaseapp.com",
+        databaseURL:
+          "https://medcare-rats-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "medcare-rats",
+        storageBucket: "medcare-rats.appspot.com",
+        messagingSenderId: "945587451123",
+        appId: "1:945587451123:web:079e258c9203da9d2b3386",
+        measurementId: "G-WXJ51H6JFN",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+
+    <script>
+      const patient = JSON.parse(localStorage.getItem("patient"));
+
+      Object.keys(patient).map((key) => {
+        const nameItems = document.querySelectorAll(`#patient-${key}`);
+        nameItems.forEach((nameItem) => {
+          nameItem.innerHTML = JSON.parse(localStorage.getItem("patient"))[key];
+        });
+      });
+
+
+    </script>
+
+
+<script>
+  // Get the logout list item
+var logoutButton = document.getElementById("logout");
+
+// Add a click event listener to the logout list item
+logoutButton.addEventListener("click", function() {
+  // Call the Firebase Authentication signOut() method to log out the user
+  firebase.auth().signOut().then(function() {
+    // Redirect the user to the login page or do any other necessary actions
+    window.location = "/signup.html";
+  }).catch(function(error) {
+    // Handle any errors that occur during the sign out process
+    console.error(error);
+  });
+});
+
+</script>
   </body>
 </html>

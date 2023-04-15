@@ -137,6 +137,7 @@
           .signInWithEmailAndPassword(email, password)
           .then(() => {
             console.log("User logged in!");
+            window.location.href = "/login.html"
           })
           .catch((error) => {
             console.error("Error logging in the user:", error);
