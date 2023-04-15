@@ -96,18 +96,24 @@
         query
           .get()
           .then((querySnapshot) => {
+            let found = false;
             querySnapshot.forEach((doc) => {
               // doc.data() is the Patient document data
               console.log(doc.id, " => ", doc.data());
               localStorage.setItem("patient", JSON.stringify(doc.data()));
-              window.location.href = "/dashboard.html"
+              window.location.href = "/dashboard.html";
+              found = true;
             });
+            if (!found) {
+              alert('No patient found with the given NIC');
+            }
           })
           .catch((error) => {
             console.error("Error querying the Patient collection:", error);
-            alert('Please login first!')
+            alert('Please login first!');
           });
       });
+
     </script>
     <!-- <script src="js/login.js"></script> -->
   </body>
