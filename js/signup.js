@@ -34,9 +34,6 @@ const firebaseConfig = {
         }
 
         database_ref.child('users/' + user.uid).set(user_data)
-
-
-
         alert("User Created")
 
     })
