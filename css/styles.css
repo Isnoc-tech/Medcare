@@ -56,7 +56,17 @@ p {
   justify-content: center;
 }
 
-ul.nav a:hover { color: #ff4c68 !important; }
+.navbar-nav .nav-link:hover {
+  color: #ff4c68 !important;
+}
+
+.navbar-brand:hover {
+  color: #ff4c68 !important;
+}
+
+.navbar-brand img:hover {
+  filter: none !important;
+}
 
 
 .navbar-brand {
