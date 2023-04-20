@@ -58,6 +58,11 @@ h2 {
   text-align: center;
 }
 
+#formContent{
+  display: grid;
+  
+}
+
 #formFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
