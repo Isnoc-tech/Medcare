@@ -18,6 +18,7 @@ p {
   font-size: 5rem;
   line-height: 1.5;
   font-weight: 500;
+  margin-top: 30px;
 }
 
 .section-heading {
@@ -54,6 +55,9 @@ p {
   align-items: center;
   justify-content: center;
 }
+
+ul.nav a:hover { color: #ff4c68 !important; }
+
 
 .navbar-brand {
   font-size: 2.5rem;

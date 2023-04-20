@@ -1,9 +1,5 @@
 /* BASIC */
 
-html {
-  background-color: #ff4c68;
-}
-
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
@@ -38,6 +34,13 @@ h2 {
   padding: 20px;
 }
 
+.form-background {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
+  padding: 40px 30px;
+}
+
 .forms-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -60,17 +63,17 @@ h2 {
 
 #formContent{
   display: grid;
-  
+
 }
 
-#formFooter {
+/* #formFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
-}
+} */
 
 /* TABS */
 
