@@ -551,9 +551,9 @@ header {
     line-height:22px;
     transition: 0.1s all;
 }
-.modal-header.login-header {
+/* .login-header {
     border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-right-radius: 5px; */
 /*Main CSS*/
 
 
